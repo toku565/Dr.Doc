@@ -30,7 +30,7 @@ Witness (ESXi 8.0u3)
 
 - vSAN 2ノード構成では **Witness が必須**
 - Witness は **クラスタに参加させない**
-- Witness には **Flash / SSD デバイスが1本必須**
+- Witness には **Flash / SSD デバイスが1本必須（キャッシュ、キャパシティそれぞれ）**
 - RAID 論理ディスクは **Witness用途に不可**
 - VM Home（名前空間）と VMDK は **別オブジェクト**
 - デフォルトストレージポリシー（FTT=1）のままでは VM 作成不可
