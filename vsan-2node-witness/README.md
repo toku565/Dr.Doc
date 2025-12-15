@@ -121,6 +121,8 @@ esxcli vsan network ipv4 add -i vmk1
 esxcli vsan network list
 ```
 
+---
+
 ## 6. フォルトドメイン設定（重要）
 
 データノードのみ手動設定する
@@ -129,9 +131,14 @@ FD-NodeA → NodeA
 FD-NodeB → NodeB
 
 Witness は 自動的に別ドメイン扱いされる（UI非表示）。
+
+---
+
 ## 7. vSAN Datastore 作成
     ディスクグループ作成
     Datastore 作成確認
+
+---
 
 ## 8. VM作成時の地雷と回避策（FTT=0）
 問題
@@ -150,6 +157,8 @@ VM作成時の注意
 
 ※ ディスクだけ指定しても失敗する（VM Homeが原因）
 
+---
+
 ## 9. 性能検証（CrystalDiskMark）
 観測結果（FTT=0）
     Read：配置ノード一致時は高速
@@ -159,6 +168,8 @@ VM作成時の注意
 学び
     vMotionはデータを動かさない
     FTT=0 は 配置依存性能
+
+---
 
 ## 10. 障害試験
 ケース1：データを持たないノード停止
