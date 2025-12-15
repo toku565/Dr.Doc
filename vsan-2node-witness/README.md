@@ -119,6 +119,7 @@ Witness (ESXi 8.0u3)
 ```bash
 esxcli vsan network ipv4 add -i vmk1
 esxcli vsan network list
+```
 
 6. フォルトドメイン設定（重要）
 
@@ -129,9 +130,7 @@ FD-NodeB → NodeB
 
 Witness は 自動的に別ドメイン扱いされる（UI非表示）。
 7. vSAN Datastore 作成
-
     ディスクグループ作成
-
     Datastore 作成確認
 
 8. VM作成時の地雷と回避策（FTT=0）
@@ -141,75 +140,49 @@ Witness は 自動的に別ドメイン扱いされる（UI非表示）。
     障害ドメイン不足で VM 作成不可
 
 回避策：FTT=0 ポリシー作成
-
     ストレージポリシー → 新規作成
-
     vSAN ストレージルールを有効化
-
     許容される障害の数：0
-
     ポリシー名例：vSAN-FTT0
 
 VM作成時の注意
-
     VM全体（VM Home）に vSAN-FTT0 を指定
-
     仮想ディスクも全て vSAN-FTT0
 
 ※ ディスクだけ指定しても失敗する（VM Homeが原因）
+
 9. 性能検証（CrystalDiskMark）
 観測結果（FTT=0）
-
     Read：配置ノード一致時は高速
-
     Read：vMotion後は大幅低下
-
     Write：一貫して遅い（仕様）
 
 学び
-
     vMotionはデータを動かさない
-
     FTT=0 は 配置依存性能
 
 10. 障害試験
 ケース1：データを持たないノード停止
-
     VM：生存
-
     性能：低下
-
     vSAN Health：赤
 
 ケース2：データ保持ノード停止（FTT=0）
-
     VM：生存するが I/O 詰まり
-
     OS挙動：不安定
-
     ノード復帰で回復
 
 FTT=0 は「止まらないことがある」が「安全ではない」
 11. 撤収手順
-
     vSAN Datastore 上の VM 削除
-
     Cluster → vSAN 無効化
-
     フォルトドメイン削除
-
     Witness 解除
-
     Witness ESXi シャットダウン
-
     vSAN / vMotion / vmk / Portgroup 削除
 
 まとめ
-
     vSAN は「性能装置」ではなく「可用性装置」
-
     FTT=0 は検証用途限定
-
     VM Home と VMDK の違いが最大の地雷
-
     UIだけでなく オブジェクト配置の理解が必須
