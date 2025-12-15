@@ -129,11 +129,11 @@ FD-NodeA → NodeA
 FD-NodeB → NodeB
 
 Witness は 自動的に別ドメイン扱いされる（UI非表示）。
-##7. vSAN Datastore 作成
+## 7. vSAN Datastore 作成
     ディスクグループ作成
     Datastore 作成確認
 
-##8. VM作成時の地雷と回避策（FTT=0）
+## 8. VM作成時の地雷と回避策（FTT=0）
 問題
     デフォルトポリシー（FTT=1）では
     障害ドメイン不足で VM 作成不可
@@ -150,7 +150,7 @@ VM作成時の注意
 
 ※ ディスクだけ指定しても失敗する（VM Homeが原因）
 
-##9. 性能検証（CrystalDiskMark）
+## 9. 性能検証（CrystalDiskMark）
 観測結果（FTT=0）
     Read：配置ノード一致時は高速
     Read：vMotion後は大幅低下
@@ -160,7 +160,7 @@ VM作成時の注意
     vMotionはデータを動かさない
     FTT=0 は 配置依存性能
 
-##10. 障害試験
+## 10. 障害試験
 ケース1：データを持たないノード停止
     VM：生存
     性能：低下
@@ -172,7 +172,7 @@ VM作成時の注意
     ノード復帰で回復
 
 FTT=0 は「止まらないことがある」が「安全ではない」
-##11. 撤収手順
+## 11. 撤収手順
     vSAN Datastore 上の VM 削除
     Cluster → vSAN 無効化
     フォルトドメイン削除
