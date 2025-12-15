@@ -121,7 +121,7 @@ esxcli vsan network ipv4 add -i vmk1
 esxcli vsan network list
 ```
 
-##6. フォルトドメイン設定（重要）
+## 6. フォルトドメイン設定（重要）
 
 データノードのみ手動設定する
 
