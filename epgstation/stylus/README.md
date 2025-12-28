@@ -1,4 +1,3 @@
-# EPGStation Stylus CSS
 # EPGStation Stylus CSS — 見やすさ最適化テンプレ
 
 EPGStation の番組表・録画一覧が見づらかったため、
