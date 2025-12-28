@@ -23,5 +23,10 @@ EPGStation の番組表・録画一覧が見づらかったため、
 - EPGStation のアップデートで動作しなくなる可能性があります
 - サポートは行いません（自己責任でどうぞ）
 
+## スクリーンショット
+※ UI 説明目的のため、番組情報はぼかしています。
+![EPGStation Program Guide UI (blurred)](./program-guide-blurred.png)
+
+
 ## ライセンス
 MIT License
