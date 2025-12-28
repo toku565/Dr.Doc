@@ -4,7 +4,7 @@ EPGStation の番組表・録画一覧が見づらかったため、
 個人利用向けに Stylus 用の CSS を作成しました。
 
 ## 対象環境
-- EPGStation（検証時バージョン: 記載予定）
+- EPGStation（検証時バージョン:v2.10.0）
 - Stylus（Firefox / Chrome）
 
 ## 主な変更点
