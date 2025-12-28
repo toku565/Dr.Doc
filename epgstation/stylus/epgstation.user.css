@@ -1,0 +1,200 @@
+/* ==UserStyle==
+@name           EPGStation Stylus CSS (PC)
+@namespace      https://github.com/toku565/Dr.Doc
+@version        1.0.0
+@description    EPGStation UI readability tweaks (Program Guide + Recorded list). Personal template.
+@author         toku565
+@preprocessor   default
+@var text epgstation_url "EPGStation base URL" "http://192.168.1.1:8888/"
+==/UserStyle== */
+
+/*
+How to use (Chrome / Chromium):
+- Stylus settings: set "EPGStation base URL" to your EPGStation URL.
+- If @var doesn't work in your environment, replace the URL in @document manually.
+*/
+
+/* Chrome / Chromium (Stylus) */
+@document url-prefix("/*[[epgstation_url]]*/") {
+
+  /* ===============================
+     EPGStation 番組表 (PC専用)
+     =============================== */
+
+  /* [A] 番組セル（ベース） */
+  .item{
+    position:relative;
+    background:#232323 !important;
+    color:#d8d8d8 !important;
+
+    font-size:14px !important;
+    font-weight:480 !important;
+    line-height:1.4 !important;
+
+    padding:6px 8px 6px 20px !important; /* 左バー余白 */
+    border:1px solid rgba(255,255,255,0.06) !important;
+    border-radius:6px !important;
+    overflow:hidden !important;
+
+    transition:filter .15s ease, box-shadow .15s ease;
+  }
+
+  /* [B] テキスト（強すぎない） */
+  .item .name{
+    font-weight:520 !important;
+    color:#eeeeee !important;
+    line-height:1.35 !important;
+  }
+  .item .time{
+    font-size:12px !important;
+    opacity:.75 !important;
+    margin-top:4px !important;
+  }
+  .item .description{
+    font-size:12px !important;
+    opacity:.70 !important;
+    margin-top:4px !important;
+
+    display:-webkit-box !important;
+    -webkit-line-clamp:3 !important;
+    -webkit-box-orient:vertical !important;
+    overflow:hidden !important;
+  }
+
+  /* [C] ホバー＝操作対象（分かりやすく） */
+  .item:hover{
+    outline:3px solid #4c8dff !important;
+    box-shadow:0 0 0 2px rgba(76,141,255,.9),
+               0 0 14px rgba(76,141,255,.6) !important;
+    z-index:20 !important;
+    filter:brightness(1.05) !important;
+  }
+
+  /* [D] クリック中 */
+  .item:active{
+    outline:3px solid #ff9800 !important;
+    box-shadow:0 0 0 3px rgba(255,152,0,.9),
+               0 0 18px rgba(255,152,0,.7) !important;
+  }
+
+  /* [E] “選択っぽい”状態を全部拾う（保険） */
+  .item.active,.item.is-active,.item.is-selected,.item.selected,.item.focus,
+  .item:focus,.item:focus-within{
+    outline:3px solid #4c8dff !important;
+    box-shadow:0 0 0 3px rgba(76,141,255,.95),
+               0 0 18px rgba(76,141,255,.7),
+               inset 0 0 0 1px rgba(255,255,255,.2) !important;
+    z-index:30 !important;
+  }
+
+  /* [F] ジャンル色（彩度UP） */
+  .item.ctg-0 { --genre-color:#29b6f6; } /* 情報・ワイド */
+  .item.ctg-1 { --genre-color:#66bb6a; } /* ドラマ */
+  .item.ctg-2 { --genre-color:#ffa726; } /* バラエティ */
+  .item.ctg-3 { --genre-color:#ef5350; } /* 映画 */
+  .item.ctg-4 { --genre-color:#ab47bc; } /* アニメ */
+  .item.ctg-5 { --genre-color:#90caf9; } /* ドキュメンタリー */
+  .item.ctg-6 { --genre-color:#d4e157; } /* 音楽 */
+  .item.ctg-7 { --genre-color:#ff7043; } /* スポーツ */
+
+  /* [G] ジャンルバー（太く・はっきり） */
+  .item[class*="ctg-"]::before{
+    content:"";
+    position:absolute;
+    left:0; top:0;
+    width:7px;
+    height:100%;
+    background:var(--genre-color,#888);
+    opacity:1;
+  }
+
+  /* [H] 今放送中（クラスが付く環境なら効く） */
+  .item.onair::before,.item.now::before{ width:10px !important; }
+  .item.onair,.item.now{
+    box-shadow:0 0 10px rgba(255,255,255,.12),
+               inset 0 0 0 1px rgba(255,255,255,.12) !important;
+  }
+
+  /* ===============================
+     EPGStation 録画一覧（Recorded）見やすく【完成版】
+     =============================== */
+
+  /* 録画一覧っぽい画面で、カード/行の間隔を詰める */
+  [class*="record"] [class*="card"],
+  [class*="record"] [class*="item"],
+  [class*="record"] [class*="list"] [class*="item"],
+  [class*="record"] [class*="row"] {
+    padding: 8px 10px !important;
+  }
+
+  /* タイトル（番組名）は折り返し優先 */
+  [class*="record"] .name,
+  [class*="record"] .title,
+  [class*="record"] [class*="title"],
+  [class*="record"] [class*="name"] {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1.25 !important;
+    font-weight: 560 !important;
+  }
+
+  /* 1行固定指定を解除 */
+  [class*="record"] .name *,
+  [class*="record"] .title * {
+    white-space: normal !important;
+  }
+
+  /* サブ情報（日時・チャンネル等） */
+  [class*="record"] .meta,
+  [class*="record"] .sub,
+  [class*="record"] [class*="meta"],
+  [class*="record"] [class*="sub"] {
+    opacity: 0.75 !important;
+    font-size: 12px !important;
+  }
+
+  /* アイコンボタン自体を小さく */
+  .v-btn.v-btn--icon {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    padding: 4px !important;
+  }
+
+  /* アイコンサイズを抑える */
+  .v-icon,
+  .v-btn .v-icon,
+  svg.v-icon__svg {
+    font-size: 18px !important;
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* 行の高さを詰めて一覧性UP */
+  .v-list-item {
+    min-height: 52px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+  }
+
+  /* サムネの主張を弱める */
+  [class*="record"] img,
+  [class*="record"] [class*="thumb"],
+  [class*="record"] [class*="thumbnail"],
+  .v-image,
+  .v-responsive {
+    max-height: 56px !important;
+    width: auto !important;
+    object-fit: cover !important;
+    border-radius: 6px !important;
+    opacity: 0.95 !important;
+  }
+
+  /* ボタン余白調整 */
+  [class*="record"] button,
+  [class*="record"] a[role="button"] {
+    padding: 4px 6px !important;
+    min-height: 0 !important;
+  }
+}
